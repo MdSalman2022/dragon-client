@@ -1,79 +1,85 @@
-import React, { useContext } from 'react';
-import { Button, Image } from 'react-bootstrap';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { FaUser } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
-import AuthProvider, { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
-import LeftSideNav from '../LeftSideNav/LeftSideNav';
+// filepath: /d:/Development/projects/dragon-news/dragon-client/src/Pages/Shared/Header/Header.js
+import React, { useContext } from "react";
+import { Link } from "react-router-dom";
+import { Navbar, Nav, Button, Image, Container } from "react-bootstrap";
+import { FaUser } from "react-icons/fa";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
 
-    const { user, logOut } = useContext(AuthContext)
-
-
-    const handleLogOut = () => {
-        logOut()
-            .then(() => { })
-            .catch(error => console.error(error))
+  const handleDownload = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/download", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "file.pdf"; // Change the file name and extension as needed
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      } else {
+        console.error("Failed to download file");
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
+  };
 
-    return (
-        <Navbar collapseOnSelect className='mb-4' expand="lg" bg="light" variant="light">
-            <Container>
-                <Navbar.Brand><Link to='/'>Dragon News</Link></Navbar.Brand>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
-                    <Nav className="me-auto">
-                        <Nav.Link href="#features">All News</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
-                        <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Another action
-                            </NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                Separated link
-                            </NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
-                    <Nav>
-                        <>
-                            {
-                                user?.uid ?
-                                    <>
-                                        <span>{user?.displayName}</span>
-                                        <Button variant="light" onClick={handleLogOut}>Log Out</Button>
-                                    </>
-                                    :
-                                    <>
-                                        <Link to="/login">Login</Link>
-                                        <Link to="/register">Register</Link>
-                                    </>
-                            }
-                        </>
-                        <Link to="/profile">
-                            {user?.photoURL ?
-                                <Image
-                                    style={{ height: '30px' }}
-                                    roundedCircle
-                                    src={user?.photoURL}>
-                                </Image>
-                                : <FaUser></FaUser>
-                            }
-                        </Link>
-                    </Nav>
-                    <div className='d-lg-none'>
-                        <LeftSideNav></LeftSideNav>
-                    </div>
-                </Navbar.Collapse>
-            </Container>
-        </Navbar>
-    );
+  return (
+    <Navbar bg="dark" variant="dark" expand="lg" className="header">
+      <Container>
+        <Navbar.Brand as={Link} to="/" className="header-title">
+          Dragon News
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            {user?.uid ? (
+              <>
+                <Nav.Item className="d-flex align-items-center">
+                  <span className="text-white mr-2">{user?.displayName}</span>
+                  <Button variant="light" onClick={() => logOut()}>
+                    Log Out
+                  </Button>
+                </Nav.Item>
+              </>
+            ) : (
+              <>
+                <Nav.Link as={Link} to="/login">
+                  Login
+                </Nav.Link>
+                <Nav.Link as={Link} to="/register">
+                  Register
+                </Nav.Link>
+              </>
+            )}
+            <Nav.Link as={Link} to="/profile">
+              {user?.photoURL ? (
+                <Image
+                  style={{ height: "30px" }}
+                  roundedCircle
+                  src={user?.photoURL}
+                />
+              ) : (
+                <FaUser className="text-white" />
+              )}
+            </Nav.Link>
+            <Button variant="outline-light" onClick={handleDownload}>
+              Download
+            </Button>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 };
 
 export default Header;

@@ -1,13 +1,156 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #343a40;
+  padding: 10px 0;
+}
+
+.header-title {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+  transition: color 0.3s ease;
+}
+
+.header-title:hover {
+  color: #ffc107;
+}
+
+.navbar-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+/* filepath: /d:/Development/projects/dragon-news/dragon-client/src/Pages/Register/Register.css */
+.register-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.register-form {
+  margin-top: 20px;
+}
+
+.register-form .form-control {
+  margin-bottom: 15px;
+}
+
+.register-form .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.register-form .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.register-form .btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.register-form .btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* filepath: /d:/Development/projects/dragon-news/dragon-client/src/Pages/Login/Login.css */
+.login-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  margin-top: 20px;
+}
+
+.login-form .form-control {
+  margin-bottom: 15px;
+}
+
+.login-form .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.login-form .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+.login-form .btn-outline-primary {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.login-form .btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.w-100 {
+  width: 100%;
 }
