@@ -154,3 +154,20 @@ code {
 .w-100 {
   width: 100%;
 }
+
+/* filepath: /d:/Development/projects/dragon-news/dragon-client/src/Pages/Others/Profile/Profile.css */
+.posts-section {
+  margin-top: 20px;
+}
+
+.posts-section h3 {
+  margin-bottom: 20px;
+}
+
+.posts-section .card {
+  margin-bottom: 15px;
+}
+
+.posts-section .btn-warning {
+  margin-right: 10px;
+}

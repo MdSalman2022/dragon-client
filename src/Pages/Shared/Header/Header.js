@@ -37,7 +37,7 @@ const Header = () => {
     <Navbar bg="dark" variant="dark" expand="lg" className="header">
       <Container>
         <Navbar.Brand as={Link} to="/" className="header-title">
-          Dragon News
+          NewsPortal
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
